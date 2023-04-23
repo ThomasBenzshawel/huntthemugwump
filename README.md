@@ -5,7 +5,7 @@ https://faculty-web.msoe.edu/hasker/cs2040/labs/6/
 
 Labs 6 and 7 will give you experience with working in teams to write a larger, object-oriented C++ program.
 
-The Game
+# The Game
 Hunt the Wumpus was an early computer game. The basic goal of the game is to kill a wumpus in a cave without entering the chamber the wumpus is in, using your senses to detect when it is close by. Along the way you can fall into pits, be picked up by bats, and discover objects such as arrows and treasure. Atari had a full version of this that you can play online, but this has far more features than we want you to try to implement. A simpler version that is closer to what you should implement is available here. However, your solution must be character based. For example, your program might look like
 
     
@@ -30,7 +30,7 @@ Hunt the Wumpus was an early computer game. The basic goal of the game is to kil
 
 You will work in groups of 2 or 3 on this assignment. You will design your own version of the game and implement it in C++. One of your early tasks will be to document the rules of your game and to construct a class model. Part of your grade will be based on how unique your solution is; you might hunt moldy food in your fridge, chase Roscoe Raider through the science building, or be hunted by a large cockroach. Be creative with behaviors as well: alternative traps and new ways to move about the caves are also appropriate. Note that just substituting (say) marshmallows for arrows is not an example of creativity.
 
-The Game
+# The Game
 You must have a help option describing how to play the game. Ensure this covers all rules.
 The game must be reasonably simple. In particular, it must be possible to play the game without extensive research.
 In addition, your game must be winnable applying basic deductive reasoning. In the original game, the player has a reasonable chance of winning based on educated guesses, just as it is with modern puzzle games. You will lose points if winning is purely a matter of luck.
@@ -58,7 +58,8 @@ Any hints you give the player should be based on being close to an object; for e
 Whenever the bat (or its equivalent) moves the player in the dungeon, provide a hint saying the player moved. Note the original game does not say where the player moved to, just that the player was moved.
 Whenever the player is killed, say by falling into a trap or being eaten by a monster, say what killed the player so the user can learn to play the game better in the future.
 Whenever you create an instance of a class your group writes, or whenever you pass an instance as a parameter, use pointers. This is especially important for inheritance, but it is also necessary to give your team more experience with pointers. Be sure to use delete to return all allocated memory to the heap. This wouldn't be strictly necessary for a small project like this, but it is good practice. There must be exactly one delete executed for each new executed. You will likely want to implement destructors to ensure this happens.
-Design Constraints
+
+# Design Constraints
 Your implementation must be unique, even if your rules are very close to the original. If your implementation looks like one of the hundreds of versions of the game that are available online, you will be penalized. Ignore the online code and you will be fine.
 You must use inheritance in an important way as part of your solution. One use of inheritance is adequate (that is, one base class with two distinct subclasses with important different behaviors), but you may find it leads to a better design to use inheritance in multiple ways. for an A you may need additional base classes with additional subclasses.
 You must make heavy use of classes (have a number of them). This actually helps distinguish your solution from most of the ones online. Start with the obvious domain classes: maps, rooms, the item being hunted, hazards, etc. These are the objects in the problem that a non-programmer would recognize, and using them as the basis of a design makes your program easier to write and maintain.
@@ -72,7 +73,7 @@ Use rand to generate random numbers.
 Use srand to seed your random number generator; see the line "srand(time(NULL))" in the example.
 You might prompt the user about using debug mode and then call the srand function only in regular mode. You can also set up debug mode to run when the user specifies a command-line argument. Be sure to document entering debug mode in the readme file (see below).
 If you are interested in using the C++ <random> library instead of rand and srand, talk to your instructor.
-Lab 6
+# Lab 6
 Labs 6 and 7 are two parts of the same project. Lab 6 will be based on setting up the project and designing the game, and lab 7 will be based on delivering a working, maintainable solution.
 
 For lab 6, submit a (single) PDF containing all of the following
@@ -93,7 +94,7 @@ In addition, check in an initial version of the project that builds on all machi
 
 Some students are tempted use use the code generation feature of Enterprise Architect to create the initial code. Do not; it adds a lot of unnecessary artifacts and means you will not get sufficient practice writing C++ code. If it takes more than about 15 minutes to create an initial version of the project, get help from your instructor. It should be as simple as creating a "hello world" program and editing it to prompt the user until the user enters 'q'.
 
-Lab 7
+# Lab 7
 Lab 7 is finishing and delivering the full solution. This includes the following:
 
 Have a friend play the game and confirm it is winnable with minimal help from you.
