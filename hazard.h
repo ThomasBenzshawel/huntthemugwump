@@ -1,8 +1,9 @@
 #ifndef _hazard_h
 #define _hazard_h
 
-class hazard
-{
+#include <cell.h>
+
+class hazard : cell{
 private:
     /* data */
 public:
