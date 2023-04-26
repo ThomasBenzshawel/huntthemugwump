@@ -1,6 +1,8 @@
 # huntthemugwump
 C++ lab group project
 
+To compile use this command: g++ main.cpp character.cpp .\cell.cpp .\map.cpp .\weapon.cpp .\hazard.cpp -o test
+
 https://faculty-web.msoe.edu/hasker/cs2040/labs/6/
 
 Labs 6 and 7 will give you experience with working in teams to write a larger, object-oriented C++ program.
