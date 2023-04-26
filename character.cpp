@@ -16,9 +16,7 @@ bool character::move(char direction){
 
     if(direction == 'n'){
       if(this->current_y - 1 != -1){
-        cout << "we got here";
       nextCell = this->occupiedMap->getCell(this->current_x, this->current_y -= 1);
-      cout << "and here";
       } 
     }
 
@@ -38,11 +36,10 @@ bool character::move(char direction){
       if(this->current_x- 1 != -1){
       nextCell = this->occupiedMap->getCell(this->current_x -= 1, this->current_y);
       } 
+    }
       //occupiedMap->getCell(this->current_x, this->current_y)->vacate();
       cout<< "got here";
     return moveToNeighbor(nextCell);
-
-    }
 }
 
 bool character::moveToNeighbor(cell *neighbor){
