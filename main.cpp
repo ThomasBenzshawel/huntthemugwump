@@ -14,6 +14,8 @@ void processResponse(char response, character* mainPlayer){
         exit(EXIT_SUCCESS);
     } else if(tolower(response) == 'h'){
         cout << "It's no use, GIVE UP!";
+    } else if (tolower(response) == 'p'){
+        mainPlayer->occupiedMap->write();
     } else {
         mainPlayer->move(tolower(response));
     }

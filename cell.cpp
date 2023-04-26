@@ -11,11 +11,11 @@ cell::cell(char c, int x, int y){
 }
 
   char cell::display(){
-    return '?';
+    return '.';
   }
   // robot enters location
   void cell::enter(){
-    
+
   }
   // robot leaves location
   void cell::vacate(){

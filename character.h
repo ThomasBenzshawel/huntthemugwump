@@ -9,8 +9,8 @@ class character
 private:
   int current_x;
   int current_y;
-  map *occupiedMap;
 public:
+     map *occupiedMap;
     character(map *map, int startx, int starty);
     ~character();
     bool move(char direction);

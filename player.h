@@ -3,7 +3,7 @@
 
 #include "character.h"
 
-class player{
+class player : public character{
 private:
     /* data */
 public:

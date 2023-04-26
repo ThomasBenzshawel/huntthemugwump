@@ -17,6 +17,7 @@
       for(int j = 0; j < WIDTH + 1; j++){
         cout << cells[j-1][i-1]->display();
       }
+       cout << endl;
       }
     }
 
