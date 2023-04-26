@@ -11,6 +11,7 @@ private:
     int x;
     int y;
     bool hasWeapon;
+    bool isHazard;
 
 public:
     cell(/* args */);

@@ -25,13 +25,13 @@ int main(){
 
 //make map
 map *mainMap = new map();
-mainMap->load();
+mainMap->load(7, 7);
 
   /* initialize random seed: */
 srand (time(NULL));
 //make a random starting location
-int random_x = rand() % 9 + 1;
-int random_y = rand() % 9 + 1;
+int random_x = rand() % HEIGHT + 1;
+int random_y = rand() % WIDTH + 1;
 character *mainPlayer = new character(mainMap, random_x, random_y);
 
 

@@ -14,7 +14,7 @@ public:
     map(/* args */);
     ~map();
 
-  void load();
+  void load(int numWeapons, int numHazards);
   // write the full map to cout
   void write();
 

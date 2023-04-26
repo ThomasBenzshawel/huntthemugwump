@@ -38,7 +38,6 @@ bool character::move(char direction){
       } 
     }
       //occupiedMap->getCell(this->current_x, this->current_y)->vacate();
-      cout<< "got here";
     return moveToNeighbor(nextCell);
 }
 

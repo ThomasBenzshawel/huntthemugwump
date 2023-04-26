@@ -1,7 +1,7 @@
 # huntthemugwump
 C++ lab group project
 
-To compile use this command: g++ main.cpp character.cpp .\cell.cpp .\map.cpp .\weapon.cpp .\hazard.cpp -o test
+To compile use this command: g++ main.cpp character.cpp .\cell.cpp .\map.cpp .\weapon.cpp -o test
 
 https://faculty-web.msoe.edu/hasker/cs2040/labs/6/
 
