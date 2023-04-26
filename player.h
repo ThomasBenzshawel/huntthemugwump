@@ -1,9 +1,9 @@
 #ifndef PLAYER_H_
 #define PLAYER_H_
 
-#include <character.h>
+#include "character.h"
 
-class player : public character{
+class player{
 private:
     /* data */
 public:
@@ -11,15 +11,6 @@ public:
     ~player();
     player(map*, int x, int y);
 };
-
-player::player(map* mainMap, int x, int y) 
-: character(mainMap, x, y){
-
-}
-
-player::~player()
-{
-}
 
 
 #endif

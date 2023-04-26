@@ -20,8 +20,4 @@ public:
 
 };
 
-character::~character()
-{
-}
-
 #endif

@@ -1,4 +1,5 @@
 #include "cell.h"
+#include <iostream>
 #include <string>
 using namespace std;
 
@@ -10,11 +11,11 @@ cell::cell(char c, int x, int y){
 }
 
   char cell::display(){
-
+    return '?';
   }
   // robot enters location
   void cell::enter(){
-
+    
   }
   // robot leaves location
   void cell::vacate(){

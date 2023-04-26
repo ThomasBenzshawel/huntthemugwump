@@ -1,7 +1,7 @@
 #ifndef _hazard_h
 #define _hazard_h
 
-#include <cell.h>
+#include "cell.h"
 
 class hazard : cell{
 private:
@@ -10,13 +10,5 @@ public:
     hazard(/* args */);
     ~hazard();
 };
-
-hazard::hazard(/* args */)
-{
-}
-
-hazard::~hazard()
-{
-}
 
 #endif

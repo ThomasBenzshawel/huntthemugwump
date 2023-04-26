@@ -28,13 +28,4 @@ public:
   int getY();
 };
 
-cell::cell(/* args */){
-
-}
-
-cell::~cell()
-{
-}
-
-
 #endif
