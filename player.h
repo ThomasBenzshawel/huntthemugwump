@@ -5,7 +5,7 @@
 
 class player{
 private:
-    /* data */
+   int numBombs =4;
 public:
     player(/* args */);
     ~player();
