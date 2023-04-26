@@ -1,6 +1,8 @@
 //New code!
 #include <iostream>
 #include <string>
+#include <stdlib.h>
+#include <time.h>
 #include "map.h"
 #include "character.h"
 #include "player.h"
@@ -23,9 +25,11 @@ int main(){
 map *mainMap = new map();
 mainMap->load();
 
+  /* initialize random seed: */
+srand (time(NULL));
 //make a random starting location
-int random_x = rand() % WIDTH;
-int random_y = rand() % HEIGHT;
+int random_x = rand() % 9 + 1;
+int random_y = rand() % 9 + 1;
 character *mainPlayer = new character(mainMap, random_x, random_y);
 
 
