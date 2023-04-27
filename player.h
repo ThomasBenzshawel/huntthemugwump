@@ -5,9 +5,10 @@
 
 class player : public character{
 private:
-   int numBombs =4;
+   int numBomb;
+   bool hasTrapSheild=false;
+   bool hasWumpSheild=false;
 public:
-    player(/* args */);
     ~player();
     player(map*, int x, int y);
 };
