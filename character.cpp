@@ -37,6 +37,10 @@ bool character::move(char direction){
       nextCell = this->occupiedMap->getCell(this->current_x -= 1, this->current_y);
       } 
     }
+<<<<<<< HEAD
+=======
+      //occupiedMap->getCell(this->current_x, this->current_y)->vacate();
+>>>>>>> 78b90863b102949f5999bf2396c6ecdb9b5fa7d7
     return moveToNeighbor(nextCell);
     cout<< "got here";
 }
