@@ -4,13 +4,14 @@
 #include "character.h"
 
 class player : public character{
-private:
-   int numBomb;
+public:
+   int numBomb=0;
+   bool isAlive = true;
    bool hasTrapSheild=false;
    bool hasWumpSheild=false;
-public:
     ~player();
-    player(map*, int x, int y);
+    player(map*, int x, int y,char who);
+    bool move(char direction,char who);
 };
 
 

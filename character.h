@@ -6,15 +6,14 @@ class cell;
 
 class character
 {
-private:
+public:
   int current_x;
   int current_y;
-public:
+  char who;
      map *occupiedMap;
-    character(map *map, int startx, int starty);
+    character(map *map, int startx, int starty,char who);
     ~character();
-    bool move(char direction);
-    bool moveToNeighbor(cell *neighbor);
+    bool move();
     bool initializeCharacter(cell *currentCell);
 
 

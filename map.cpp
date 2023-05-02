@@ -29,6 +29,48 @@
     return cells[x][y];
   }
 
+  int map::blowUp(int x,int y){
+      if(cells[x][y]->display()=='W'){
+        return 1;
+      }else if(cells[x][y]->display()=='P'){
+        return -1;
+      }
+      cells[x][y]=new cell('*',x,y);
+      if(x+1!=WIDTH){
+         if(cells[x+1][y]->display()=='W'){
+        return 1;
+      }else if(cells[x+1][y]->display()=='P'){
+        return -1;
+      }
+      cells[x+1][y]=new cell('*',x,y);
+      }
+      if(!x-1<0){
+         if(cells[x-1][y]->display()=='W'){
+        return 1;
+      }else if(cells[x-1][y]->display()=='P'){
+        return -1;
+      }
+      cells[x-1][y]=new cell('*',x,y);
+      }
+      if(y+1!=HEIGHT){
+         if(cells[x][y+1]->display()=='W'){
+        return 1;
+      }else if(cells[x][y+1]->display()=='P'){
+        return -1;
+      }
+      cells[x][y+1]=new cell('*',x,y);
+      }
+       if(!y-1<0){
+         if(cells[x][y-1]->display()=='W'){
+        return 1;
+      }else if(cells[x][y-1]->display()=='P'){
+        return -1;
+      }
+      cells[x][y-1]=new cell('*',x,y);
+      }
+      return 0;
+  }
+
   void map::load(int numWeapons, int numHazards){
     srand (time(NULL));
 
@@ -40,25 +82,43 @@
         cell *newCell = new cell('#', random_x, random_y);
         cells[random_x][random_y] = newCell;
       } else {
-        cell *newCell = new cell('A', random_x, random_y);
-        cells[random_x][random_y] = newCell;   
+        int type = rand()%4;
+        if(type==1){
+          cell *newCell = new cell('>', random_x, random_y);
+          cells[random_x][random_y] = newCell;   
+        }else if(type==2){
+          cell *newCell = new cell('<', random_x, random_y);
+          cells[random_x][random_y] = newCell;   
+        }else if(type==3){
+          cell *newCell = new cell('^', random_x, random_y);
+          cells[random_x][random_y] = newCell;   
+        }else{
+          cell *newCell = new cell('v', random_x, random_y);
+          cells[random_x][random_y] = newCell;   
+        }
+      
       }
       
     }
-
-
     for(int i = 0; i < numWeapons; i++){
       int random_x = rand() % HEIGHT + 1;
       int random_y = rand() % WIDTH + 1;
-      
+
       if(rand() % 3 + 1 == 1){
+        if(cells[random_x][random_y]->display() =='#'){
+          i--;
+        }else{
         cell *newCell = new cell('B', random_x, random_y);
         cells[random_x][random_y] = newCell;
+        }
       } else {
+         if(cells[random_x][random_y]->display() =='#'){
+          i--;
+        }else{
         cell *newCell = new cell('S', random_x, random_y);
         cells[random_x][random_y] = newCell;   
+        }
       }
-
       for(int i = 0; i < HEIGHT; i++){
         for(int j = 0; j < WIDTH; j++){
         if(cells[j][i] == nullptr){
@@ -67,8 +127,38 @@
         }
       }
     }
-
     }
+  }
 
-    cout<<"Map loaded";
+  int map::WumpusNear(){
+    int WumpusCordX=-1;
+    int WumpusCordY=-1;
+    int PlayerCordX=-1;
+    int PlayerCordY=-1;
+     for(int i = 0; i < HEIGHT; i++){
+        for(int j = 0; j < WIDTH; j++){
+        if(cells[j][i]->display() == 'P'){
+          PlayerCordX=j;
+          PlayerCordY=i;
+        }else if(cells[j][i]->display() == 'W'){
+          WumpusCordX=j;
+          WumpusCordY=i;
+        }
+      }
+    }
+    if(WumpusCordX-1==PlayerCordX){
+      //to the west of the player
+      return 1;
+    }else if(WumpusCordX+1==PlayerCordX){
+      //to the east of the player
+      return 2;
+    }else if(WumpusCordY-1==PlayerCordX){
+      //to the noth of the player
+      return 3;
+    }else if(WumpusCordY+1==PlayerCordY){
+      //to the south of the player
+      return 4;
+    }
+    //not near
+    return -1;
   }

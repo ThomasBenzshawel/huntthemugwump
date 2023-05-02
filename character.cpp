@@ -2,52 +2,53 @@
 #include "cell.h"
 #include "character.h"
 #include <iostream>
+#include <stdlib.h>
+#include <time.h>
 
-character::character(map* map, int startx, int starty){
+character::character(map* map, int startx, int starty,char who){
     this->occupiedMap = map;
     this->current_x = startx;
     this->current_y = starty;
+    this->who = who;
 
     initializeCharacter(map->getCell(startx, starty));
 }
 
-bool character::move(char direction){
+bool character::move(){
     cell *nextCell = nullptr;
-
-    if(direction == 'n'){
+     srand (time(NULL));
+    int direction  = rand()%4;
+    if(direction == 1){
       if(this->current_y - 1 != -1){
       nextCell = this->occupiedMap->getCell(this->current_x, this->current_y -= 1);
       } 
     }
-
-    if(direction == 'e'){
+    if(direction == 2){
       if(this->current_x + 1 != WIDTH){
       nextCell = this->occupiedMap->getCell(this->current_x += 1, this->current_y);
       }
     }
-
-    if(direction == 's'){
+    if(direction == 3){
       if(this->current_y + 1 != HEIGHT){
       nextCell = this->occupiedMap->getCell(this->current_x, this->current_y += 1);
       }
     }
-
-    if(direction == 'w'){
+    else{
       if(this->current_x- 1 != -1){
       nextCell = this->occupiedMap->getCell(this->current_x -= 1, this->current_y);
       } 
     }
-      //occupiedMap->getCell(this->current_x, this->current_y)->vacate();
-    return moveToNeighbor(nextCell);
-    cout<< "got here";
+    if(nextCell->display()!='P'){
+       occupiedMap->getCell(this->current_x, this->current_y)->vacate();
+        nextCell->enter(this->who);
+        return true;
+    }else{
+      return false;
+    }
 }
 
-bool character::moveToNeighbor(cell *neighbor){
-    //neighbor->enter();
-    cout<< this->current_x << ", " << this->current_y << endl;
-    return true;
-}
 
 bool character::initializeCharacter(cell *currentCell){
-    moveToNeighbor(currentCell);
+    currentCell->enter(this->who);
+    return true;
 }

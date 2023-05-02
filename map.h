@@ -19,6 +19,8 @@ public:
   void write();
 
   cell* getCell(int x, int y);
+  int blowUp(int x,int y);
+  int WumpusNear();
 };
 
 
