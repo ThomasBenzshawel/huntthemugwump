@@ -62,6 +62,7 @@ cell::cell(char c, int x, int y){
       }
     
     }
+    cout << "who is "<< who;
     this->type=who;
     return 1;
   }

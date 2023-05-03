@@ -10,7 +10,9 @@ int player::move(char direction,char who){
     cout<< "According to tom, PLayer at:" << this->current_x << ", " << this-> current_y << endl;
 
     cell *nextCell = nullptr;
-    occupiedMap->getCell(this->current_x, this->current_y)->vacate();
+    cell *pastCell = nullptr;
+
+    pastCell = occupiedMap->getCell(this->current_x, this->current_y);
     if(direction == 'n'){
       if(this->current_y - 1 != -1){
       nextCell = this->occupiedMap->getCell(this->current_x, this->current_y--);
@@ -39,7 +41,8 @@ int player::move(char direction,char who){
         return 0;
       }
     }
-    
-    
-    return nextCell->enter(who,this);
+  
+    int returnVal = nextCell->enter(who,this);
+    pastCell->vacate();
+    return returnVal;
 }

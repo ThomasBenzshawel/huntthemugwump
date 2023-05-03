@@ -140,11 +140,11 @@ using namespace std;
         if(cells[j][i]->display() == 'P'){
           PlayerCordX=j;
           PlayerCordY=i;
-          cout<< "According to dom, Player at: " << i << "," << j <<endl;
+          cout<< "According to dom, Player at: " << j << "," << i <<endl;
         }else if(cells[j][i]->display() == 'W'){
           WumpusCordX=j;
           WumpusCordY=i;
-          cout<< "According to dom, Wumpus at: " << i << "," << j <<endl;
+          cout<< "According to dom, Wumpus at: " << j << "," << i <<endl;
         }
       }
     }
