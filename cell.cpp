@@ -10,6 +10,7 @@ using namespace std;
 
 cell::cell(char c, int x, int y){
     this->type = c;
+    this->baseType = c;
     this->x = x;
     this->y = y;
 
@@ -33,10 +34,10 @@ cell::cell(char c, int x, int y){
     if(this->type=='>'||this->type=='<'||this->type=='^'||this->type=='v'){
       return triggerArrow(this->type,c);
     }else if(this->type=='#'){
-      cout<<"You hit a snare trap, you lose your turn";
+      cout<<"You hit a snare trap, you lose your turn"<<endl;
       return 0;
     }else if(this->type=='B'){
-      cout<<"You find a chest with a Bomb in it, use it carefully";
+      cout<<"You find a chest with a Bomb in it, use it carefully"<<endl;
       c->numBomb++;
       this->type='.';
     }else if(this->type=='S'){
@@ -64,9 +65,9 @@ cell::cell(char c, int x, int y){
     this->type=who;
     return 1;
   }
-  // robot leaves location
+  // character leaves location
   void cell::vacate(){
-    this->type='.';
+    this->type=baseType;
   }
   int cell::getX(){
     return this-> x;

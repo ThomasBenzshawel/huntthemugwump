@@ -5,6 +5,8 @@
 #include <stdlib.h>
 #include <time.h>
 
+using namespace std;
+
 
 
   // initialize empty map
@@ -138,9 +140,11 @@
         if(cells[j][i]->display() == 'P'){
           PlayerCordX=j;
           PlayerCordY=i;
+          cout<< "According to dom, Player at: " << i << "," << j <<endl;
         }else if(cells[j][i]->display() == 'W'){
           WumpusCordX=j;
           WumpusCordY=i;
+          cout<< "According to dom, Wumpus at: " << i << "," << j <<endl;
         }
       }
     }

@@ -4,9 +4,11 @@
 
 #include <iostream>
 
-player::player(map* mainMap, int x, int y,char who) : character(mainMap, x, y,who){}
+player::player(map* mainMap, int x, int y, char who) : character(mainMap, x, y, who){}
 
 int player::move(char direction,char who){
+    cout<< "According to tom, PLayer at:" << this->current_x << ", " << this-> current_y << endl;
+
     cell *nextCell = nullptr;
     occupiedMap->getCell(this->current_x, this->current_y)->vacate();
     if(direction == 'n'){
@@ -37,6 +39,7 @@ int player::move(char direction,char who){
         return 0;
       }
     }
+    
     
     return nextCell->enter(who,this);
 }

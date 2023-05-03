@@ -15,40 +15,42 @@ using namespace std;
 //return -1 wumpus kills you
 int isWumpNear(map* mainMap,character* wumpus,player* mainPlayer){
 //checks if the wumpus is near
-int wump = mainMap->WumpusNear();
- if(wump != -1){
-        string response;
-        cout<<"THE WUMPUS IS NEAR, GET HIM"<<endl;
-        cout<<"Action: N)orth, S)outh, E)ast, W)est"<<endl;
-        cin >> response;
-        char res = response[0];
-        if((res=='n'||res=='N')&&(wump==3)){
-            return 1;
-        }else if((res=='e'||res=='E')&&(wump==2)){
-            return 1;
-        }else if((res=='w'||res=='W')&&(wump==1)){
-            return 1;
-        }else if((res=='s'||res=='S')&&(wump==4)){
-            return 1;
-        }else{
-            if(!wumpus->move()){
-                if(mainPlayer->hasWumpSheild){
-                    mainPlayer->hasWumpSheild=false;
-                    cout<<"The Wumpus Attacks!"<<endl;
-                    cout<<"You would of been dead but thanks to your sheild you survive!"<<endl;
-                    return 0;
-                }else{
-                    cout<<"The Wumpus Attacks!"<<endl;
-                    cout<<"YOU DIE"<<endl;
-                    return -1;
-                }
+    int wump = mainMap->WumpusNear();
+    if(wump != -1){
+            string response;
+            cout<<"THE WUMPUS IS NEAR, GET HIM"<<endl;
+            cout<<"Action: N)orth, S)outh, E)ast, W)est"<<endl;
+            cin >> response;
+            char res = response[0];
+
+            //Attack with a sword instead of the bomb
+            if((res=='n'||res=='N')&&(wump==3)){
+                return 1;
+            }else if((res=='e'||res=='E')&&(wump==2)){
+                return 1;
+            }else if((res=='w'||res=='W')&&(wump==1)){
+                return 1;
+            }else if((res=='s'||res=='S')&&(wump==4)){
+                return 1;
             }else{
-                cout<<"The Wumpus escapes, but he is near!"<<endl;
-                return 0;
+                if(!wumpus->move()){
+                    if(mainPlayer->hasWumpSheild){
+                        mainPlayer->hasWumpSheild=false;
+                        cout<<"The Wumpus Attacks!"<<endl;
+                        cout<<"You would of been dead but thanks to your sheild you survive!"<<endl;
+                        return 0;
+                    }else{
+                        cout<<"The Wumpus Attacks!"<<endl;
+                        cout<<"YOU DIE"<<endl;
+                        return -1;
+                    }
+                }else{
+                    cout<<"The Wumpus escapes, but he is near!"<<endl;
+                    return 0;
+                }
             }
         }
-    }
-    return 0;
+        return 0;
 }
 
 int main(){
@@ -100,21 +102,22 @@ while (isAlive&&!win){
     if(tolower(res) == 'q'){
         exit(EXIT_SUCCESS);
     } else if(tolower(res) == 'h'){
+        //TODO Actually make a help function
         cout << "It's no use, GIVE UP!"<<endl;
-    }else if(tolower(res) == 'b'){
+    } else if(tolower(res) == 'b'){
         //planting the bomb
         if(isBombPresent<=0){
-        cout<<"Bomb has been planted NOW RUN!"<<endl;
-        possibleBombs--;
-        mainPlayer->numBomb--;
-        isBombPresent = 3;
-        bombX=mainPlayer->current_x;
-        bombY=mainPlayer->current_y;
-        }else{
+            cout<<"Bomb has been planted NOW RUN!"<<endl;
+            possibleBombs--;
+            mainPlayer->numBomb--;
+            isBombPresent = 3;
+            bombX=mainPlayer->current_x;
+            bombY=mainPlayer->current_y;
+        } else {
             //cant place multiple bombs, you would die otherwise 
-            cout<<"you wasted your turn stupid";
+            cout<<"you wasted your turn stupid"<<endl;
         }
-    }else {
+    } else {
         //moving the player
         status = mainPlayer->move(tolower(res),'P');
         //if status is 0 then net trap triggered
@@ -124,13 +127,14 @@ while (isAlive&&!win){
             isAlive=false;
         }
     }
+
     //check if wumpus is near and trigger the event
     if(isAlive&&!win) {
     status=isWumpNear(mainMap,wumpus,mainPlayer);
     if(status==-1){
         isAlive=false;
     }else if(status==1){
-        cout<<"you got the wumpus!";
+        cout<<"you got the wumpus!"<<endl;
         win=true;
     }
     }
@@ -139,11 +143,11 @@ while (isAlive&&!win){
     wumpus->move();
     cout<<"The wumpus moves"<<endl;
     //check if the wumpus is near
-    int status=isWumpNear(mainMap,wumpus,mainPlayer);
+    int status= isWumpNear(mainMap,wumpus,mainPlayer);
     if(status==-1){
         isAlive=false;
     }else if(status==1){
-        cout<<"you got the wumpus!";
+        cout<<"you got the wumpus!"<<endl;
         win=true;
     }
     }

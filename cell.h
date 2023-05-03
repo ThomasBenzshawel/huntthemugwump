@@ -9,6 +9,7 @@ class cell{
 private:
     /* data */
     char type;
+    char baseType;
     int x;
     int y;
     bool hasWeapon;
