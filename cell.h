@@ -9,7 +9,6 @@ class cell{
 private:
     /* data */
     char type;
-    char prevtype;
     int x;
     int y;
     bool hasWeapon;
@@ -20,12 +19,12 @@ public:
 
   char display();
   // robot enters location
-  bool enter(char who,player* c);
+  int enter(char who,player* c);
   void enter(char who);
   // robot leaves location
   void vacate();
 
-  bool triggerArrow(char direction,player* c);
+  int triggerArrow(char direction,player* c);
 
   int getX();
   int getY();

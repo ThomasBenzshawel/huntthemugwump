@@ -11,7 +11,7 @@ public:
    bool hasWumpSheild=false;
     ~player();
     player(map*, int x, int y,char who);
-    bool move(char direction,char who);
+    int move(char direction,char who);
 };
 
 

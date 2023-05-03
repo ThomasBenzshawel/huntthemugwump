@@ -12,7 +12,6 @@ cell::cell(char c, int x, int y){
     this->type = c;
     this->x = x;
     this->y = y;
-    this->prevtype='^';
 
     if(c == 'A' || '#'){
         this->isHazard = true;
@@ -24,90 +23,90 @@ cell::cell(char c, int x, int y){
   char cell::display(){
     return type;
   }
+  //wumpus enters location and destroys any items/traps there
   void cell::enter(char who){
-    this->prevtype=this->type;
     this->type=who;
   }
-  // robot enters location
-  bool cell::enter(char who,player* c){
-    this->prevtype=this->type;
-    this->type=who;
-    if(prevtype=='>'||prevtype=='<'||prevtype=='^'||prevtype=='v'){
-      return triggerArrow(prevtype,c);
-    }else if(prevtype=='#'){
+  // player enters the location
+   int cell::enter(char who,player* c){
+    
+    if(this->type=='>'||this->type=='<'||this->type=='^'||this->type=='v'){
+      return triggerArrow(this->type,c);
+    }else if(this->type=='#'){
       cout<<"You hit a snare trap, you lose your turn";
-      return false;
-    }else if(prevtype=='B'){
+      return 0;
+    }else if(this->type=='B'){
       cout<<"You find a chest with a Bomb in it, use it carefully";
       c->numBomb++;
-      prevtype='*';
-    }else if(prevtype=='S'){
+      this->type='.';
+    }else if(this->type=='S'){
       srand (time(NULL));
       int type = rand()%2;
       if(type==1){
         cout<<"You find a chest with a flimsy sheild in it, this should be good to block any projectiles"<<endl;
         if(!c->hasTrapSheild){
           c->hasTrapSheild=true;
-          prevtype='*';
+          this->type='.';
         }else{
-        cout<<"You already have one of these sheilds, but you should be able to come back for it"<<endl;
+        cout<<"You already have one of these sheilds, it dissolves in your hand, never to be seen again."<<endl;
         }
       }else{
         cout<<"You find a chest with a sturdy sheild in it, this should be good to block atacks form the wumpus"<<endl;
         if(!c->hasWumpSheild){
           c->hasWumpSheild=true;
-          prevtype='*';
+          this->type='.';
         }else{
-        cout<<"You already have one of these sheilds, but you should be able to come back for it"<<endl;
+        cout<<"You already have one of these sheilds, it dissolves in your hand, never to be seen again."<<endl;
         }
       }
     
     }
-    return true;
+    this->type=who;
+    return 1;
   }
   // robot leaves location
   void cell::vacate(){
-    this->prevtype=this->type;
-    this->prevtype='^';
+    this->type='.';
   }
-
   int cell::getX(){
     return this-> x;
   }
   int cell::getY(){
     return this-> y;
   }
-
-  bool cell::triggerArrow(char direction,player* c){
-    cout<<"you reachec an arrow trap.Pick a direction to defend in a direction"<<endl;
+  //trigger for the arrow trap 
+  // return 1=you survive the trap
+  // return -1= you DIE
+  int cell::triggerArrow(char direction,player* c){
+    cout<<"you reach an arrow trap.Pick a direction to defend in a direction"<<endl;
     cout<<"Action: N)orth, S)outh, E)ast, W)est"<<endl;
     char input;
     cin>>input;
     if(direction=='<'&&(input=='W'||input=='w')){
       cout<<"you succesfully defended";
-      return true;
+      return 1;
     }else if(direction=='^'&&(input=='N'||input=='n')){
       cout<<"you succesfully defended";
-      return true;
+      return 1;
     }else if(direction=='>'&&(input=='E'||input=='e')){
       cout<<"you succesfully defended";
-      return true;
+      return 1;
     }else if(direction=='v'&&(input=='S'||input=='s')){
       cout<<"you succesfully defended";
-      return true;
+      return 1;
     }else{
       if(c->hasTrapSheild){
         c->hasTrapSheild=false;
         cout<<"Ouch,you get hit by the arrow trap but live thanks to your sheild"<<endl;
         cout<<"Your sheild gets destroyed"<<endl;
-        return true;
+        return 1;
       }else{
         c->isAlive=false;
         cout<<"Ouch, you get hit by the arrow trap"<<endl;
-        return false;
+        return -1;
       }
     }
-    return true;
+    return 1;
   };
 
 

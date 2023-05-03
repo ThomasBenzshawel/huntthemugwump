@@ -29,6 +29,10 @@
     return cells[x][y];
   }
 
+  //triggers the bomb
+  //return -1=player dies
+  //return 1=wumpus dies
+  //return 0 nothing happens
   int map::blowUp(int x,int y){
       if(cells[x][y]->display()=='W'){
         return 1;
@@ -70,14 +74,20 @@
       }
       return 0;
   }
-
+  //loads the map
   void map::load(int numWeapons, int numHazards){
     srand (time(NULL));
 
+    for(int i = 0; i < HEIGHT; i++){
+        for(int j = 0; j < WIDTH; j++){
+          cell *newCell = new cell('.', j, i);
+          cells[j][i] = newCell;
+      }
+    }
+ 
     for(int i = 0; i < numHazards; i++){
       int random_x = rand() % HEIGHT + 1;
       int random_y = rand() % WIDTH + 1;
-
       if(rand() % 3 + 1 == 1){
         cell *newCell = new cell('#', random_x, random_y);
         cells[random_x][random_y] = newCell;
@@ -96,40 +106,28 @@
           cell *newCell = new cell('v', random_x, random_y);
           cells[random_x][random_y] = newCell;   
         }
-      
       }
-      
     }
+
     for(int i = 0; i < numWeapons; i++){
       int random_x = rand() % HEIGHT + 1;
       int random_y = rand() % WIDTH + 1;
-
+    
       if(rand() % 3 + 1 == 1){
-        if(cells[random_x][random_y]->display() =='#'){
-          i--;
-        }else{
         cell *newCell = new cell('B', random_x, random_y);
         cells[random_x][random_y] = newCell;
-        }
+      
       } else {
-         if(cells[random_x][random_y]->display() =='#'){
-          i--;
-        }else{
         cell *newCell = new cell('S', random_x, random_y);
         cells[random_x][random_y] = newCell;   
-        }
+      
       }
-      for(int i = 0; i < HEIGHT; i++){
-        for(int j = 0; j < WIDTH; j++){
-        if(cells[j][i] == nullptr){
-          cell *newCell = new cell('.', random_x, random_y);
-          cells[j][i] = newCell;
-        }
-      }
+     
     }
-    }
+   
+    
   }
-
+  //checks if the wumpus is near
   int map::WumpusNear(){
     int WumpusCordX=-1;
     int WumpusCordY=-1;
