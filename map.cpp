@@ -148,16 +148,16 @@ using namespace std;
         }
       }
     }
-    if(WumpusCordX-1==PlayerCordX){
+    if(WumpusCordX-1==PlayerCordX && PlayerCordY == WumpusCordY){
       //to the west of the player
       return 1;
-    }else if(WumpusCordX+1==PlayerCordX){
+    }else if(WumpusCordX+1==PlayerCordX && PlayerCordY == WumpusCordY){
       //to the east of the player
       return 2;
-    }else if(WumpusCordY-1==PlayerCordX){
+    }else if(WumpusCordY-1==PlayerCordY && PlayerCordX == WumpusCordX){
       //to the noth of the player
       return 3;
-    }else if(WumpusCordY+1==PlayerCordY){
+    }else if(WumpusCordY+1==PlayerCordY && PlayerCordX == WumpusCordX){
       //to the south of the player
       return 4;
     }

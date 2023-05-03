@@ -32,9 +32,11 @@ cell::cell(char c, int x, int y){
    int cell::enter(char who,player* c){
     
     if(this->type=='>'||this->type=='<'||this->type=='^'||this->type=='v'){
+      this->type=who;
       return triggerArrow(this->type,c);
     }else if(this->type=='#'){
       cout<<"You hit a snare trap, you lose your turn"<<endl;
+      this->type=who;
       return 0;
     }else if(this->type=='B'){
       cout<<"You find a chest with a Bomb in it, use it carefully"<<endl;
@@ -62,7 +64,6 @@ cell::cell(char c, int x, int y){
       }
     
     }
-    cout << "who is "<< who;
     this->type=who;
     return 1;
   }
