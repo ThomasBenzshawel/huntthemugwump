@@ -16,6 +16,7 @@ using namespace std;
 int isWumpNear(map* mainMap,character* wumpus,player* mainPlayer){
 //checks if the wumpus is near
     int wump = mainMap->WumpusNear();
+    cout << wump << endl;
     if(wump != -1){
             string response;
             cout<<"THE WUMPUS IS NEAR, GET HIM"<<endl;

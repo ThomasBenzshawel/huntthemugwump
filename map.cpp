@@ -41,7 +41,7 @@ using namespace std;
       }else if(cells[x][y]->display()=='P'){
         return -1;
       }
-      cells[x][y]=new cell('*',x,y);
+      cells[x][y]= new cell('*',x,y);
       if(x+1!=WIDTH){
          if(cells[x+1][y]->display()=='W'){
         return 1;
@@ -140,24 +140,22 @@ using namespace std;
         if(cells[j][i]->display() == 'P'){
           PlayerCordX=j;
           PlayerCordY=i;
-          cout<< "According to dom, Player at: " << j << "," << i <<endl;
         }else if(cells[j][i]->display() == 'W'){
           WumpusCordX=j;
           WumpusCordY=i;
-          cout<< "According to dom, Wumpus at: " << j << "," << i <<endl;
         }
       }
     }
-    if(WumpusCordX-1==PlayerCordX && PlayerCordY == WumpusCordY){
+    if((WumpusCordX-1==PlayerCordX) && (PlayerCordY == WumpusCordY)){
       //to the west of the player
       return 1;
-    }else if(WumpusCordX+1==PlayerCordX && PlayerCordY == WumpusCordY){
+    }else if((WumpusCordX+1==PlayerCordX) && (PlayerCordY == WumpusCordY)){
       //to the east of the player
       return 2;
-    }else if(WumpusCordY-1==PlayerCordY && PlayerCordX == WumpusCordX){
+    }else if((WumpusCordY-1==PlayerCordY) && (PlayerCordX == WumpusCordX)){
       //to the noth of the player
       return 3;
-    }else if(WumpusCordY+1==PlayerCordY && PlayerCordX == WumpusCordX){
+    }else if((WumpusCordY+1==PlayerCordY) && (PlayerCordX == WumpusCordX)){
       //to the south of the player
       return 4;
     }

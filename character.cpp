@@ -22,34 +22,38 @@ bool character::move(){
      srand (time(NULL));
     int direction  = rand()%4;
     if(direction == 1){
-      if(this->current_y - 1 != -1){
-      nextCell = this->occupiedMap->getCell(this->current_x, this->current_y -= 1);
+      if(this->current_y - 1 >= 1){
+      nextCell = this->occupiedMap->getCell(this->current_x, this->current_y - 1);
       } else{
         return false;
       }
     }
     if(direction == 2){
-      if(this->current_x + 1 != WIDTH){
-      nextCell = this->occupiedMap->getCell(this->current_x += 1, this->current_y);
+      if(this->current_x + 1 < WIDTH){
+      nextCell = this->occupiedMap->getCell(this->current_x + 1, this->current_y);
       }else{
         return false;
       }
     }
     if(direction == 3){
-      if(this->current_y + 1 != HEIGHT){
-      nextCell = this->occupiedMap->getCell(this->current_x, this->current_y += 1);
+      if(this->current_y + 1 < HEIGHT){
+      nextCell = this->occupiedMap->getCell(this->current_x, this->current_y + 1);
       }else{
         return false;
       }
     }
     else{
-      if(this->current_x- 1 != -1){
-      nextCell = this->occupiedMap->getCell(this->current_x -= 1, this->current_y);
+      if(this->current_x- 1 > 0){
+        nextCell = this->occupiedMap->getCell(this->current_x - 1, this->current_y);
       } else{
         return false;
       }
     }
     if(nextCell->display()!='P'){
+      this->current_x = nextCell->getX();
+      this->current_y = nextCell->getY();
+      cout << this->current_x << ", " << this->current_y << endl;
+
         nextCell->enter(this->who);
         return true;
     }else{

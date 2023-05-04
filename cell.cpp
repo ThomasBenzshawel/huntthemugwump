@@ -30,10 +30,12 @@ cell::cell(char c, int x, int y){
   }
   // player enters the location
    int cell::enter(char who,player* c){
-    
+    c->current_x = this->getX();
+    c->current_y = this->getY();
+
     if(this->type=='>'||this->type=='<'||this->type=='^'||this->type=='v'){
       this->type=who;
-      return triggerArrow(this->type,c);
+      return triggerArrow(this->baseType,c);
     }else if(this->type=='#'){
       cout<<"You hit a snare trap, you lose your turn"<<endl;
       this->type=who;
@@ -41,7 +43,8 @@ cell::cell(char c, int x, int y){
     }else if(this->type=='B'){
       cout<<"You find a chest with a Bomb in it, use it carefully"<<endl;
       c->numBomb++;
-      this->type='.';
+      this->type=who;
+      this->baseType='.';
     }else if(this->type=='S'){
       srand (time(NULL));
       int type = rand()%2;
@@ -49,7 +52,8 @@ cell::cell(char c, int x, int y){
         cout<<"You find a chest with a flimsy sheild in it, this should be good to block any projectiles"<<endl;
         if(!c->hasTrapSheild){
           c->hasTrapSheild=true;
-          this->type='.';
+          this->type=who;
+          this->baseType='.';
         }else{
         cout<<"You already have one of these sheilds, it dissolves in your hand, never to be seen again."<<endl;
         }
@@ -57,7 +61,8 @@ cell::cell(char c, int x, int y){
         cout<<"You find a chest with a sturdy sheild in it, this should be good to block atacks form the wumpus"<<endl;
         if(!c->hasWumpSheild){
           c->hasWumpSheild=true;
-          this->type='.';
+          this->type=who;
+          this->baseType='.';
         }else{
         cout<<"You already have one of these sheilds, it dissolves in your hand, never to be seen again."<<endl;
         }
