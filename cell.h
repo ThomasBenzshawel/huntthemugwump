@@ -21,7 +21,7 @@ public:
   char display();
   // robot enters location
   int enter(char who,player* c);
-  void enter(char who);
+  void enter(char who,character* c);
   // robot leaves location
   void vacate();
 

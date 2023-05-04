@@ -61,13 +61,13 @@ mainMap->load(7, 7);
   /* initialize random seed: */
 srand (time(NULL));
 //make a random starting location
-int random_x = rand() % HEIGHT + 1;
-int random_y = rand() % WIDTH + 1;
-int random_y2 = rand() % HEIGHT + 1;
-int random_x2 = rand() % WIDTH + 1;
+int random_x = rand() % HEIGHT;
+int random_y = rand() % WIDTH;
+int random_y2 = rand() % HEIGHT;
+int random_x2 = rand() % WIDTH;
 while(random_y2==random_y||random_x==random_x2){
-    random_y2 = rand() % HEIGHT + 1;
-    random_x2 = rand() % WIDTH + 1;
+    random_y2 = rand() % HEIGHT;
+    random_x2 = rand() % WIDTH;
 }
 //for location of the bomb
 int bombX=-1;

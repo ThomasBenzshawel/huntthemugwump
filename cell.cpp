@@ -24,8 +24,11 @@ cell::cell(char c, int x, int y){
   char cell::display(){
     return type;
   }
-  //wumpus enters location and destroys any items/traps there
-  void cell::enter(char who){
+  //wumpus enters location 
+  void cell::enter(char who, character* c){
+    c->current_x = this->getX();
+    c->current_y = this->getY();
+    this->baseType = type;
     this->type=who;
   }
   // player enters the location

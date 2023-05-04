@@ -15,7 +15,7 @@ character::character(map* map, int startx, int starty,char who){
 }
 
 bool character::move(){
-   occupiedMap->getCell(this->current_x, this->current_y)->vacate();
+
    int x = this->current_x;
    int y = this->current_y;
     cell *nextCell = nullptr;
@@ -54,16 +54,18 @@ bool character::move(){
       this->current_y = nextCell->getY();
       cout << this->current_x << ", " << this->current_y << endl;
 
-        nextCell->enter(this->who);
+        nextCell->enter(this->who,this);
+        occupiedMap->getCell(x, y)->vacate();
         return true;
     }else{
-      this->occupiedMap->getCell(x,y)->enter(this->who);
+      this->occupiedMap->getCell(x,y)->enter(this->who,this);
+      occupiedMap->getCell(x, y)->vacate();
       return false;
     }
 }
 
 
 bool character::initializeCharacter(cell *currentCell){
-    currentCell->enter(this->who);
+    currentCell->enter(this->who,this);
     return true;
 }

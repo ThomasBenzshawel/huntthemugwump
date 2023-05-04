@@ -12,8 +12,9 @@ using namespace std;
   // initialize empty map
   map::map(){
     for(int i = 0; i < HEIGHT; i++){
-      for(int j = 0; j < WIDTH; j++){
-        cells[j][i] = nullptr;
+        for(int j = 0; j < WIDTH; j++){
+          cell *newCell = new cell('.', j, i);
+          cells[j][i] = newCell;
       }
     }
   }
@@ -41,14 +42,14 @@ using namespace std;
       }else if(cells[x][y]->display()=='P'){
         return -1;
       }
-      cells[x][y]= new cell('*',x,y);
+      cells[x][y]= new cell('.',x,y);
       if(x+1!=WIDTH){
          if(cells[x+1][y]->display()=='W'){
         return 1;
       }else if(cells[x+1][y]->display()=='P'){
         return -1;
       }
-      cells[x+1][y]=new cell('*',x,y);
+      cells[x+1][y]=new cell('.',x,y);
       }
       if(!x-1<0){
          if(cells[x-1][y]->display()=='W'){
@@ -56,7 +57,7 @@ using namespace std;
       }else if(cells[x-1][y]->display()=='P'){
         return -1;
       }
-      cells[x-1][y]=new cell('*',x,y);
+      cells[x-1][y]=new cell('.',x,y);
       }
       if(y+1!=HEIGHT){
          if(cells[x][y+1]->display()=='W'){
@@ -64,7 +65,7 @@ using namespace std;
       }else if(cells[x][y+1]->display()=='P'){
         return -1;
       }
-      cells[x][y+1]=new cell('*',x,y);
+      cells[x][y+1]=new cell('.',x,y);
       }
        if(!y-1<0){
          if(cells[x][y-1]->display()=='W'){
@@ -72,20 +73,13 @@ using namespace std;
       }else if(cells[x][y-1]->display()=='P'){
         return -1;
       }
-      cells[x][y-1]=new cell('*',x,y);
+      cells[x][y-1]=new cell('.',x,y);
       }
       return 0;
   }
   //loads the map
   void map::load(int numWeapons, int numHazards){
     srand (time(NULL));
-
-    for(int i = 0; i < HEIGHT; i++){
-        for(int j = 0; j < WIDTH; j++){
-          cell *newCell = new cell('.', j, i);
-          cells[j][i] = newCell;
-      }
-    }
  
     for(int i = 0; i < numHazards; i++){
       int random_x = rand() % HEIGHT + 1;
@@ -146,16 +140,19 @@ using namespace std;
         }
       }
     }
-    if((WumpusCordX-1==PlayerCordX) && (PlayerCordY == WumpusCordY)){
+    if((WumpusCordX+1==PlayerCordX) && (PlayerCordY == WumpusCordY)){
       //to the west of the player
+
       return 1;
-    }else if((WumpusCordX+1==PlayerCordX) && (PlayerCordY == WumpusCordY)){
+    }else if((WumpusCordX-1==PlayerCordX) && (PlayerCordY == WumpusCordY)){
       //to the east of the player
+
       return 2;
-    }else if((WumpusCordY-1==PlayerCordY) && (PlayerCordX == WumpusCordX)){
-      //to the noth of the player
-      return 3;
     }else if((WumpusCordY+1==PlayerCordY) && (PlayerCordX == WumpusCordX)){
+      //to the noth of the player
+
+      return 3;
+    }else if((WumpusCordY-1==PlayerCordY) && (PlayerCordX == WumpusCordX)){
       //to the south of the player
       return 4;
     }
