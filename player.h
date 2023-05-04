@@ -3,15 +3,20 @@
 
 #include "character.h"
 
-class player : public character{
+class player{
 public:
+    int current_x;
+    int current_y;
+    char who;
    int numBomb=0;
+   map *occupiedMap;
    bool isAlive = true;
    bool hasTrapSheild=false;
    bool hasWumpSheild=false;
+   player(map* mainMap, int x, int y, char who);
     ~player();
-    player(map*, int x, int y,char who);
     int move(char direction,char who);
+    bool initializeCharacter(cell *currentCell);
 };
 
 

@@ -76,7 +76,7 @@ int isBombPresent=0;
 //number of bombs before you lose
 int possibleBombs=3;
 player *mainPlayer = new player(mainMap, random_x, random_y,'P');
-character * wumpus = new player(mainMap,random_x2,random_y2,'W');
+character * wumpus = new character(mainMap,random_x2,random_y2,'W');
 bool isAlive=true;
 bool win = false;
 bool turnLost = false;

@@ -23,29 +23,37 @@ bool character::move(){
     int direction  = rand()%4;
     if(direction == 1){
       if(this->current_y - 1 != -1){
-      nextCell = this->occupiedMap->getCell(this->current_x, this->current_y -= 1);
+      nextCell = this->occupiedMap->getCell(this->current_x, this->current_y--);
       } else{
+        this->current_y++;
+        this->occupiedMap->getCell(x,y)->enter(this->who);
         return false;
       }
     }
     if(direction == 2){
       if(this->current_x + 1 != WIDTH){
-      nextCell = this->occupiedMap->getCell(this->current_x += 1, this->current_y);
+      nextCell = this->occupiedMap->getCell(this->current_x++, this->current_y);
       }else{
+        this->current_x--;
+        this->occupiedMap->getCell(x,y)->enter(this->who);
         return false;
       }
     }
     if(direction == 3){
       if(this->current_y + 1 != HEIGHT){
-      nextCell = this->occupiedMap->getCell(this->current_x, this->current_y += 1);
+      nextCell = this->occupiedMap->getCell(this->current_x, this->current_y++);
       }else{
+        this->current_y--;
+        this->occupiedMap->getCell(x,y)->enter(this->who);
         return false;
       }
     }
     else{
       if(this->current_x- 1 != -1){
-      nextCell = this->occupiedMap->getCell(this->current_x -= 1, this->current_y);
+      nextCell = this->occupiedMap->getCell(this->current_x--, this->current_y);
       } else{
+        this->current_x++;
+        this->occupiedMap->getCell(x,y)->enter(this->who);
         return false;
       }
     }
