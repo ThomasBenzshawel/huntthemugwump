@@ -104,11 +104,16 @@ while (isAlive&&!win){
         exit(EXIT_SUCCESS);
     } else if(tolower(res) == 'h'){
         //TODO Actually make a help function
-        cout << "It's no use, GIVE UP!"<<endl;
+        cout << "You are an explosively inclined adventurer equiped with 3 bombs, that is hunting a terrifying wumpus that is made of stone." <<endl 
+        << "You must hunt this creature in a dark cave laden with traps, explosives, and shields left from past hunters. " << endl
+        << "Your prey can be killed with a well placed bomb, but be carefull! If you don't run far enough, you'll hurt youself with the explosion." << endl
+        << "You can also kill the wumpus with a precise stab in the eye with your trusty sword while it's close by. " << endl
+        << "Finally, listen for the creaking of traps left from other adventurers (that are absolutely useless against the hulking behemoth)," << endl
+        << "especially if you dont have a protective shield. Happy hunting!"<<endl;
     } else if(tolower(res) == 'b'){
         //planting the bomb
         if(isBombPresent<=0){
-            cout<<"Bomb has been planted NOW RUN!"<<endl;
+            cout<<"Bomb has been planted, NOW RUN!"<<endl;
             possibleBombs--;
             mainPlayer->numBomb--;
             isBombPresent = 3;
@@ -116,9 +121,9 @@ while (isAlive&&!win){
             bombY=mainPlayer->current_y;
         } else {
             //cant place multiple bombs, you would die otherwise 
-            cout<<"you wasted your turn stupid"<<endl;
+            cout<<"you wasted your turn"<<endl;
         }
-    } else {
+    } else if(tolower(res) == 'n' || tolower(res) == 's' || tolower(res) == 'e' || tolower(res) == 'w') {
         //moving the player
         status = mainPlayer->move(tolower(res),'P');
         //if status is 0 then net trap triggered
@@ -127,6 +132,8 @@ while (isAlive&&!win){
         }if(status ==-1){
             isAlive=false;
         }
+    } else {
+        cout<<"you wasted your turn, please enter a valid input"<<endl;
     }
 
     //check if wumpus is near and trigger the event
