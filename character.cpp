@@ -52,7 +52,6 @@ bool character::move(){
     if(nextCell->display()!='P'){
       this->current_x = nextCell->getX();
       this->current_y = nextCell->getY();
-      cout << this->current_x << ", " << this->current_y << endl;
 
         nextCell->enter(this->who,this);
         occupiedMap->getCell(x, y)->vacate();

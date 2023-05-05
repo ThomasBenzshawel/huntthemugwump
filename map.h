@@ -21,6 +21,7 @@ public:
   cell* getCell(int x, int y);
   int blowUp(int x,int y);
   int WumpusNear();
+  int trapNear(int x, int y);
 };
 
 

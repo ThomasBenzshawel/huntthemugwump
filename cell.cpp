@@ -40,8 +40,9 @@ cell::cell(char c, int x, int y){
       this->type=who;
       return triggerArrow(this->baseType,c);
     }else if(this->type=='#'){
-      cout<<"You hit a snare trap, you lose your turn"<<endl;
+      cout<<"You hit a snare trap, you lose your turn, but destroy the trap"<<endl;
       this->type=who;
+      this->baseType = '.';
       return 0;
     }else if(this->type=='B'){
       cout<<"You find a chest with a Bomb in it, use it carefully"<<endl;
@@ -59,6 +60,7 @@ cell::cell(char c, int x, int y){
           this->baseType='.';
         }else{
         cout<<"You already have one of these sheilds, it dissolves in your hand, never to be seen again."<<endl;
+        this->baseType = '.';
         }
       }else{
         cout<<"You find a chest with a sturdy sheild in it, this should be good to block atacks form the wumpus"<<endl;
@@ -68,6 +70,7 @@ cell::cell(char c, int x, int y){
           this->baseType='.';
         }else{
         cout<<"You already have one of these sheilds, it dissolves in your hand, never to be seen again."<<endl;
+        this->baseType = '.';
         }
       }
     
@@ -94,16 +97,16 @@ cell::cell(char c, int x, int y){
     char input;
     cin>>input;
     if(direction=='<'&&(input=='W'||input=='w')){
-      cout<<"you succesfully defended";
+      cout<<"you succesfully defended"<<endl;
       return 1;
     }else if(direction=='^'&&(input=='N'||input=='n')){
-      cout<<"you succesfully defended";
+      cout<<"you succesfully defended"<<endl;
       return 1;
     }else if(direction=='>'&&(input=='E'||input=='e')){
-      cout<<"you succesfully defended";
+      cout<<"you succesfully defended"<<endl;
       return 1;
     }else if(direction=='v'&&(input=='S'||input=='s')){
-      cout<<"you succesfully defended";
+      cout<<"you succesfully defended"<<endl;
       return 1;
     }else{
       if(c->hasTrapSheild){
@@ -113,11 +116,16 @@ cell::cell(char c, int x, int y){
         return 1;
       }else{
         c->isAlive=false;
-        cout<<"Ouch, you get hit by the arrow trap"<<endl;
+        cout<<"Ouch, you get hit by the arrow trap (the same arrow trap will always shoot in the same direction)"<<endl;
         return -1;
       }
     }
     return 1;
   };
 
+
+void cell::setToEmpty(){
+    this->type = '.';
+    this->baseType = '.';
+}
 

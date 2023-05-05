@@ -5,7 +5,7 @@
 
 class player : public character{
 public:
-   int numBomb=0;
+   int numBomb=2;
    bool isAlive = true;
    bool hasTrapSheild=false;
    bool hasWumpSheild=false;

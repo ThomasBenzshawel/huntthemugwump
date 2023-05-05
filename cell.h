@@ -24,6 +24,7 @@ public:
   void enter(char who,character* c);
   // robot leaves location
   void vacate();
+  void setToEmpty();
 
   int triggerArrow(char direction,player* c);
 

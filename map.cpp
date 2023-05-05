@@ -37,19 +37,23 @@ using namespace std;
   //return 1=wumpus dies
   //return 0 nothing happens
   int map::blowUp(int x,int y){
+    //checking if we win or lose
       if(cells[x][y]->display()=='W'){
         return 1;
       }else if(cells[x][y]->display()=='P'){
         return -1;
       }
-      cells[x][y]= new cell('.',x,y);
+      
+      //change the current type and base type to empty
+      cells[x][y]->setToEmpty();
+
       if(x+1!=WIDTH){
          if(cells[x+1][y]->display()=='W'){
         return 1;
       }else if(cells[x+1][y]->display()=='P'){
         return -1;
       }
-      cells[x+1][y]=new cell('.',x,y);
+      cells[x+1][y]->setToEmpty();
       }
       if(!x-1<0){
          if(cells[x-1][y]->display()=='W'){
@@ -57,7 +61,7 @@ using namespace std;
       }else if(cells[x-1][y]->display()=='P'){
         return -1;
       }
-      cells[x-1][y]=new cell('.',x,y);
+      cells[x-1][y]->setToEmpty();
       }
       if(y+1!=HEIGHT){
          if(cells[x][y+1]->display()=='W'){
@@ -65,7 +69,7 @@ using namespace std;
       }else if(cells[x][y+1]->display()=='P'){
         return -1;
       }
-      cells[x][y+1]=new cell('.',x,y);
+      cells[x][y+1]->setToEmpty();
       }
        if(!y-1<0){
          if(cells[x][y-1]->display()=='W'){
@@ -73,7 +77,7 @@ using namespace std;
       }else if(cells[x][y-1]->display()=='P'){
         return -1;
       }
-      cells[x][y-1]=new cell('.',x,y);
+      cells[x][y-1]->setToEmpty();
       }
       return 0;
   }
@@ -156,6 +160,38 @@ using namespace std;
       //to the south of the player
       return 4;
     }
+    //not near
+    return -1;
+  }
+
+    //checks if the wumpus is near
+  int map::trapNear(int x, int y){
+   char current =  cells[x+1][y]->display();
+
+    if(current == '<' || current == '>' || current == '^' || current == 'v' || current == '#'){
+
+      return 1;
+
+    }
+    
+    current =  cells[x-1][y]->display();
+    if(current == '<' || current == '>' || current == '^' || current == 'v' || current == '#'){
+
+      return 1;
+    }
+    
+    current =  cells[x][y+1]->display();
+    if(current == '<' || current == '>' || current == '^' || current == 'v' || current == '#'){
+
+      return 1;
+    }
+    
+    current =  cells[x][y-1]->display();
+    if(current == '<' || current == '>' || current == '^' || current == 'v' || current == '#'){
+    
+      return 1;
+    }
+  
     //not near
     return -1;
   }
