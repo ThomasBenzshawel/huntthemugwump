@@ -142,7 +142,7 @@ while (isAlive&&!win){
 
         } else {
             //cant place multiple bombs, you would die otherwise 
-            cout<<"you wasted your turn"<<endl;
+            cout<<"you wasted your turn, stupid"<<endl;
         }
     } else if(tolower(res) == 'n' || tolower(res) == 's' || tolower(res) == 'e' || tolower(res) == 'w') {
         //moving the player
